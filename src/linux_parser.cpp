@@ -142,7 +142,7 @@ long LinuxParser::ActiveJiffies(int pid) {
 
     long total_active_jiffies{0};
 
-    const vector<int> active_jiffies_indexes{13, 14, 15, 16};
+    vector<int> active_jiffies_indexes{13, 14, 15, 16};
 
     for (int jiffie_index : active_jiffies_indexes) {
       total_active_jiffies += stol(pid_stat_vector[jiffie_index]);
