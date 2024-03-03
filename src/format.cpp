@@ -22,8 +22,5 @@ string Format::LeadingZero(int value) {
 }
 
 string Format::KbToMb(string value) {
-  float float_value{std::stof(value)};
-  std::ostringstream stream;
-  stream << std::fixed << std::setprecision(2) << float_value / 1024;
-  return stream.str();
+  return std::to_string(std::stoi(value) / 1024);
 }
