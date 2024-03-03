@@ -1,6 +1,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -22,6 +23,8 @@ class System {
  private:
   Processor cpu_ = {};
   std::vector<Process> processes_ = {};
+  std::optional<std::string> kernel_cache_;
+  std::optional<std::string> os_cache_;
 };
 
 #endif
