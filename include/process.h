@@ -22,6 +22,4 @@ class Process {
   int pid_;
 };
 
-std::string FloatToDecimal(float value, int decimals);
-
 #endif

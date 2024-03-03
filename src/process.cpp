@@ -3,13 +3,11 @@
 #include <unistd.h>
 
 #include <cctype>
-#include <cmath>
-#include <iomanip>
-#include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
 
+#include "format.h"
 #include "linux_parser.h"
 
 using std::string;
@@ -38,10 +36,7 @@ float Process::CpuUtilization() const {
 string Process::Command() { return LinuxParser::Command(Pid()); }
 
 // DONE: Return this process's memory utilization
-string Process::Ram() {
-  float ram_kb{std::stof(LinuxParser::Ram(Pid()))};
-  return FloatToDecimal(ram_kb / 1024, 2);
-}
+string Process::Ram() { return Format::KbToMb(LinuxParser::Ram(Pid())); }
 
 // DONE: Return the user (name) that generated this process
 string Process::User() { return LinuxParser::User(Pid()); }
@@ -55,13 +50,4 @@ long int Process::UpTime() const {
 // DONE: Overload the "less than" comparison operator for Process objects
 bool Process::operator<(Process const& a) const {
   return CpuUtilization() > a.CpuUtilization();
-}
-
-// got idea from chatgpt, need a way to represent floats nicely in a string
-string FloatToDecimal(float value, int decimals) {
-  std::ostringstream out;
-  out << std::fixed << std::setprecision(decimals)
-      << std::round(value * std::pow(10.0, decimals)) /
-             std::pow(10.0, decimals);
-  return out.str();
 }
